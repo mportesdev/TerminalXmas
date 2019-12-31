@@ -13,16 +13,9 @@ with open('house.txt') as f:
 
 
 def colored_bulb(color):
-    if color == 'yellow':
-        return f'\033[93m{BULB_CHAR}\033[0m'
-    if color == 'red':
-        return f'\033[91m{BULB_CHAR}\033[0m'
-    if color == 'green':
-        return f'\033[92m{BULB_CHAR}\033[0m'
-    if color == 'blue':
-        return f'\033[94m{BULB_CHAR}\033[0m'
-    if color == 'dark':
-        return f'\033[90m{BULB_CHAR}\033[0m'
+    color_code = {'yellow': 3, 'red': 1, 'green': 2, 'blue': 4,
+                  'dark': 0}[color]
+    return f'\033[9{color_code}m{BULB_CHAR}\033[0m'
 
 
 def lights(color, indexes):
