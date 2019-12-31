@@ -1,1 +1,1 @@
-Inspired by https://www.youtube.com/watch?v=lbbNoCFSBV4
+Inspired by `Creating an Animated Christmas Tree in your Terminal with Python <https://www.youtube.com/watch?v=lbbNoCFSBV4>`_.
