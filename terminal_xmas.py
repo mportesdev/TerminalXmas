@@ -18,12 +18,12 @@ def get_bulb(color):
     return f'\033[9{color_code}m{BULB_CHAR}\033[0m'
 
 
-def switch_lights(color, indexes):
+def switch_lights(color, index_list):
     lights_off = True
 
     while True:
-        for i in indexes:
-            house[i] = get_bulb(color) if lights_off else get_bulb('dark')
+        for index in index_list:
+            house[index] = get_bulb(color) if lights_off else get_bulb('dark')
 
         mutex.acquire()
         os.system('cls' if os.name == 'nt' else 'clear')
