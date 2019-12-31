@@ -40,18 +40,11 @@ red = []
 green = []
 blue = []
 
+index_lists = {'Y': yellow, 'R': red, 'G': green, 'B': blue}
+
 for i, char in enumerate(house):
-    if char == 'Y':
-        yellow.append(i)
-        house[i] = BULB_CHAR
-    elif char == 'R':
-        red.append(i)
-        house[i] = BULB_CHAR
-    elif char == 'G':
-        green.append(i)
-        house[i] = BULB_CHAR
-    elif char == 'B':
-        blue.append(i)
+    if char in ('Y', 'R', 'G', 'B'):
+        index_lists[char].append(i)
         house[i] = BULB_CHAR
 
 thread_yellow = threading.Thread(target=switch_lights, args=('yellow', yellow))
