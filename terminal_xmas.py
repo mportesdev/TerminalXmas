@@ -13,7 +13,7 @@ with open('house.txt') as f:
 
 
 def get_bulb(color):
-    color_code = {'yellow': 3, 'red': 1, 'green': 2, 'blue': 4,
+    color_code = {'Y': 3, 'R': 1, 'G': 2, 'B': 4,
                   'dark': 0}[color]
     return f'\033[9{color_code}m{BULB_CHAR}\033[0m'
 
@@ -47,10 +47,8 @@ for i, char in enumerate(house):
         index_lists[char].append(i)
         house[i] = BULB_CHAR
 
-threads = [threading.Thread(target=switch_lights, args=('yellow', yellow)),
-           threading.Thread(target=switch_lights, args=('red', red)),
-           threading.Thread(target=switch_lights, args=('green', green)),
-           threading.Thread(target=switch_lights, args=('blue', blue))]
+threads = [threading.Thread(target=switch_lights, args=args)
+           for args in index_lists.items()]
 
 for thread in threads:
     thread.start()
