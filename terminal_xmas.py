@@ -12,7 +12,7 @@ with open('house.txt') as f:
     house = list(ascii_house.rstrip())
 
 
-def colored_dot(color):
+def colored_bulb(color):
     if color == 'yellow':
         return f'\033[93m{BULB_CHAR}\033[0m'
     if color == 'red':
@@ -30,7 +30,7 @@ def lights(color, indexes):
 
     while True:
         for i in indexes:
-            house[i] = colored_dot(color) if off else colored_dot('dark')
+            house[i] = colored_bulb(color) if off else colored_bulb('dark')
 
         mutex.acquire()
         os.system('cls' if os.name == 'nt' else 'clear')
@@ -61,12 +61,12 @@ for i, char in enumerate(house):
         blue.append(i)
         house[i] = BULB_CHAR
 
-ty = threading.Thread(target=lights, args=('yellow', yellow))
-tr = threading.Thread(target=lights, args=('red', red))
-tg = threading.Thread(target=lights, args=('green', green))
-tb = threading.Thread(target=lights, args=('blue', blue))
+thread_yellow = threading.Thread(target=lights, args=('yellow', yellow))
+thread_red = threading.Thread(target=lights, args=('red', red))
+thread_green = threading.Thread(target=lights, args=('green', green))
+thread_blue = threading.Thread(target=lights, args=('blue', blue))
 
-for t in [ty, tr, tg, tb]:
-    t.start()
-for t in [ty, tr, tg, tb]:
-    t.join()
+for thread in [thread_yellow, thread_red, thread_green, thread_blue]:
+    thread.start()
+for thread in [thread_yellow, thread_red, thread_green, thread_blue]:
+    thread.join()
