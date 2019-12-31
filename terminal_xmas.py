@@ -36,16 +36,11 @@ def switch_lights(color_char, index_list):
         time.sleep(random.uniform(0.3, 0.6))
 
 
-yellow = []
-red = []
-green = []
-blue = []
-
-index_list_for_char = {'Y': yellow, 'R': red, 'G': green, 'B': blue}
+index_list_for_char = {}
 
 for i, char in enumerate(picture_data):
     if char in ('Y', 'R', 'G', 'B'):
-        index_list_for_char[char].append(i)
+        index_list_for_char.setdefault(char, []).append(i)
         picture_data[i] = BULB_CHAR
 
 threads = [threading.Thread(target=switch_lights, args=args)
