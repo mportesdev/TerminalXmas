@@ -15,8 +15,7 @@
 ','',,,,' /__________\,,,',',;;
 
 
-# source of original ascii art:
-# https://www.asciiart.eu/buildings-and-places/houses
+# Original ascii art:
 
     ) )        /\
    =====      /  \
@@ -33,3 +32,5 @@
  (^^-^^^^^-|________|-^^^--^^^)
  (,, , ,, ,/________\,,,, ,, ,)
 ','',,,,' /__________\,,,',',;;
+
+# Source: https://www.asciiart.eu/buildings-and-places/houses
