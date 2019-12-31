@@ -47,12 +47,12 @@ for i, char in enumerate(house):
         index_lists[char].append(i)
         house[i] = BULB_CHAR
 
-thread_yellow = threading.Thread(target=switch_lights, args=('yellow', yellow))
-thread_red = threading.Thread(target=switch_lights, args=('red', red))
-thread_green = threading.Thread(target=switch_lights, args=('green', green))
-thread_blue = threading.Thread(target=switch_lights, args=('blue', blue))
+threads = [threading.Thread(target=switch_lights, args=('yellow', yellow)),
+           threading.Thread(target=switch_lights, args=('red', red)),
+           threading.Thread(target=switch_lights, args=('green', green)),
+           threading.Thread(target=switch_lights, args=('blue', blue))]
 
-for thread in [thread_yellow, thread_red, thread_green, thread_blue]:
+for thread in threads:
     thread.start()
-for thread in [thread_yellow, thread_red, thread_green, thread_blue]:
+for thread in threads:
     thread.join()
