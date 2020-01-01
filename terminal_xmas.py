@@ -12,7 +12,7 @@ def get_bulb(color_char):
     return f'\033[9{color_code}m{BULB_CHAR}\033[0m'
 
 
-def switch_lights(color_char, index_list):
+def switch_lights(picture_data, color_char, index_list):
     lights_off = True
 
     while True:
@@ -34,7 +34,8 @@ mutex = threading.Lock()
 
 with open('house.txt') as f:
     ascii_picture = f.read().partition('#')[0]
-    picture_data = list(ascii_picture.rstrip())
+
+picture_data = list(ascii_picture.rstrip())
 
 index_list_for_char = {}
 
@@ -43,8 +44,9 @@ for i, char in enumerate(picture_data):
         index_list_for_char.setdefault(char, []).append(i)
         picture_data[i] = BULB_CHAR
 
-threads = [threading.Thread(target=switch_lights, args=args)
-           for args in index_list_for_char.items()]
+threads = [threading.Thread(target=switch_lights,
+                            args=(picture_data, color_char, index_list))
+           for color_char, index_list in index_list_for_char.items()]
 
 for thread in threads:
     thread.start()
