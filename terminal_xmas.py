@@ -5,12 +5,6 @@ import time
 
 BULB_CHAR = '\N{BLACK STAR}'
 
-mutex = threading.Lock()
-
-with open('house.txt') as f:
-    ascii_picture = f.read().partition('#')[0]
-    picture_data = list(ascii_picture.rstrip())
-
 
 def get_bulb(color_char):
     color_code = {'Y': 3, 'R': 1, 'G': 2, 'B': 4,
@@ -35,6 +29,12 @@ def switch_lights(color_char, index_list):
 
         time.sleep(random.uniform(0.3, 0.6))
 
+
+mutex = threading.Lock()
+
+with open('house.txt') as f:
+    ascii_picture = f.read().partition('#')[0]
+    picture_data = list(ascii_picture.rstrip())
 
 index_list_for_char = {}
 
